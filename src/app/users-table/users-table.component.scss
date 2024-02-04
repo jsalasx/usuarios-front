@@ -1,0 +1,27 @@
+/* user-table.component.css */
+table {
+  width: 100%;
+  
+}
+
+th.mat-header-cell, td.mat-cell {
+  padding: 8px;
+}
+
+.mat-mdc-row:hover {
+  background-color: #f0f5ff; /* color púrpura */
+  color: black; /* texto blanco, opcional */
+  font-weight: bold;
+}
+
+.container-1 {
+  padding: 50px;
+  
+}
+
+.btn-editar {
+  color: green !important;
+}
+.icon-edit {
+  border: 2px, solid, green;
+}

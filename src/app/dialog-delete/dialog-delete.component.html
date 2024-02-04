@@ -1,0 +1,8 @@
+<h2 mat-dialog-title></h2>
+<mat-dialog-content>
+  <p>¿Está seguro de eliminar el usuario seleccionado? &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" (click)="deleteUser()"  >Aceptar</button>
+  <button mat-raised-button cdkFocusInitial (click)="closeDialog()">Cancelar</button>
+</mat-dialog-actions>

@@ -1,0 +1,92 @@
+<h2 mat-dialog-title>Registrar usuario</h2>
+<form [formGroup]="formularioUsuario" (ngSubmit)="registrarUsuario()">
+  <mat-dialog-content class="modal-dialog">
+
+    <mat-grid-list cols="2" rowHeight="7:1">
+      <mat-grid-tile>
+        <p>Departamento:</p>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <p>Cargo:</p>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field>
+          <mat-label>Seleccione un departamento</mat-label>
+
+          <mat-select formControlName="idDepartamento">
+            @for (dep of departamentos; track dep) {
+            <mat-option [value]="dep.id">{{dep.nombre}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field>
+          <mat-label>Seleccione un cargo</mat-label>
+          <mat-select formControlName="idCargo">
+            @for (cargo of cargos; track cargo) {
+            <mat-option [value]="cargo.id">{{cargo.nombre}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+      <!---->
+      <mat-grid-tile>
+        <p>Usuario:</p>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <p>Email:</p>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field>
+          <input matInput formControlName="usuario">
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field>
+          <input matInput formControlName="email">
+        </mat-form-field>
+      </mat-grid-tile>
+      <!---->
+      <mat-grid-tile>
+        <p>Primer Nombre:</p>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <p>Segundo Nombre:</p>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field>
+          <input matInput formControlName="primerNombre">
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field>
+          <input matInput formControlName="segundoNombre">
+        </mat-form-field>
+      </mat-grid-tile>
+      <!---->
+      <mat-grid-tile>
+        <p>Primer Apellido:</p>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <p>Segundo Apellido:</p>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field>
+          <input matInput formControlName="primerApellido">
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field>
+          <input matInput formControlName="segundoApellido">
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button type="submit" mat-button mat-raised-button color="primary"
+      [disabled]="!formularioUsuario.valid">Registrar</button>
+    <button mat-button [mat-dialog-close]="" cdkFocusInitial>Cancelar</button>
+  </mat-dialog-actions>
+</form>

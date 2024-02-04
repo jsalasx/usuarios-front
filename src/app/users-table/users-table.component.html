@@ -1,0 +1,95 @@
+<h4>Módulo de Adminsitración</h4>
+<h1>Administración de usuarios</h1>
+<div class="mat-elevation-z8 container-1">
+    <mat-grid-list cols="3" rowHeight="7:1">
+        <mat-grid-tile>
+            <mat-form-field>
+                <mat-label>Seleccione un departamento</mat-label>
+                <mat-select [(value)]="selectedDepartamentoId" (selectionChange)="onDepartamentoChange($event)">
+                    <mat-option [value]="0"></mat-option>
+                    @for (dep of departamentos; track dep) {
+                    <mat-option [value]="dep.id">{{dep.nombre}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-form-field>
+                <mat-label>Seleccione un cargo</mat-label>
+                <mat-select [(value)]="selectedCargoId" (selectionChange)="onCargoChange($event)">
+                    <mat-option [value]="0"></mat-option>
+                    @for (cargo of cargos; track cargo) {
+                    <mat-option [value]="cargo.id">{{cargo.nombre}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <button mat-button (click)="nuevo()">Crear nuevo usuario</button>
+        </mat-grid-tile>
+
+    </mat-grid-list>
+
+
+
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!-- Columna Usuario -->
+        <ng-container matColumnDef="usuario">
+            <th mat-header-cell *matHeaderCellDef> Usuario </th>
+            <td mat-cell *matCellDef="let element"> {{element.usuario}} </td>
+            <td mat-footer-cell *matFooterCellDef> <b>Total Registros:</b> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nombres">
+            <th mat-header-cell *matHeaderCellDef> Nombres </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombres}} </td>
+            <td mat-footer-cell *matFooterCellDef> {{ numeroDeRegistros }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="apellidos">
+            <th mat-header-cell *matHeaderCellDef> Apellidos </th>
+            <td mat-cell *matCellDef="let element"> {{element.apellidos}} </td>
+            <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="departamento">
+            <th mat-header-cell *matHeaderCellDef> Departamento </th>
+            <td mat-cell *matCellDef="let element"> {{element.departamento}} </td>
+            <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="cargo">
+            <th mat-header-cell *matHeaderCellDef> Cargo </th>
+            <td mat-cell *matCellDef="let element"> {{element.cargo}} </td>
+            <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> Email </th>
+            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+            <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let element"> 
+                <button class="btn-editar" (click)="editar(element)" mat-button >  <mat-icon class="icon-edit">edit</mat-icon> Editar</button>
+                <button color="warn" (click)="eliminar(element)" mat-button >  <mat-icon>delete</mat-icon> Eliminar</button> </td>
+            <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <!-- Columna Nombres -->
+        <!-- ... otras definiciones de columnas -->
+
+        <!-- Fila Definición -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-footer-row *matFooterRowDef="displayedColumns">
+        </tr>
+    </table>
+
+</div>
