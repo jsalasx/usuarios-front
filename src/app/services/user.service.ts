@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../interface/User';
 import { Pagination } from '../interface/Pagination';
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
   constructor(private http: HttpClient) { }
-
+  apiUrl = environment.apiUrl;
 
   getUsersPaginate(pageNumber: number = 1, pageSize: number = 10, departamentoId: number = 0, cargoId: number = 0): Observable<Pagination<User>> {
     const endPoint = "/users";
@@ -27,26 +28,26 @@ export class UserService {
       queryString += `&cargoId=${cargoId}`
     }
 
-    return this.http.get<Pagination<User>>('http://localhost:5276' + endPoint + queryString);
+    return this.http.get<Pagination<User>>(this.apiUrl + endPoint + queryString);
   }
 
   saveUser(payload: User): Observable<User> {
     const endPoint = "/users";
-    return this.http.post<User>('http://localhost:5276' + endPoint, payload);
+    return this.http.post<User>(this.apiUrl + endPoint, payload);
   }
 
   deleteUser(id: number): Observable<any> {
     const endPoint = `/users/${id}`;
-    return this.http.delete<any>('http://localhost:5276' + endPoint);
+    return this.http.delete<any>(this.apiUrl + endPoint);
   }
 
   getUserById(id: number): Observable<User> {
     const endPoint = `/users/${id}`;
-    return this.http.get<User>('http://localhost:5276' + endPoint);
+    return this.http.get<User>(this.apiUrl + endPoint);
   }
 
   editUser(id: number, payload: User) {
     const endPoint = `/users/${id}`;
-    return this.http.put<User>('http://localhost:5276' + endPoint, payload);
+    return this.http.put<User>(this.apiUrl + endPoint, payload);
   }
 }
