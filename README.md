@@ -4,7 +4,7 @@ Este proyecto fue realizado con [Angular CLI](https://github.com/angular/angular
 
 ## 1. Clonar el repositorio
 ```
-  git clone 
+  git clone https://github.com/jsalasx/usuarios-front.git
 ```
 
 ## 2. Instalar Dependencias
