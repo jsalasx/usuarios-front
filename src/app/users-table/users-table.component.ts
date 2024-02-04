@@ -58,7 +58,8 @@ export interface DialogData {
   styleUrl: './users-table.component.scss'
 })
 export class UsersTableComponent implements OnInit {
-
+  page : number = 1; 
+  maxPage: number = 0;
   usuarios: User[] = [];
   dataSource: UserTable[] = [];
   departamentos: Deparmento[] = [];
@@ -78,6 +79,28 @@ export class UsersTableComponent implements OnInit {
     this.cargarCargos();
   }
 
+  adelante() {  
+    this.page = this.page + 1;
+    if (this.page > this.maxPage) {
+      this.page = this.maxPage;
+      this.cargarUsuarios(this.maxPage,10,this.selectedDepartamentoId,this.selectedCargoId);
+    } else {
+      this.cargarUsuarios(this.page,10,this.selectedDepartamentoId,this.selectedCargoId);
+    }
+     
+  }
+
+  atras() {  
+    this.page = this.page - 1;
+    if (this.page < 1) {
+      this.page = 1;
+      this.cargarUsuarios(this.page,10,this.selectedDepartamentoId,this.selectedCargoId);
+    } else {
+      this.cargarUsuarios(1,10,this.selectedDepartamentoId,this.selectedCargoId);
+    }
+     
+  }
+
   openDialogDelete(id: number): void {
     const dialogRefDelete = this.dialog.open(DialogDeleteComponent, {
       data: { id },
@@ -85,7 +108,7 @@ export class UsersTableComponent implements OnInit {
     });
     dialogRefDelete.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.cargarUsuarios(1, 10, this.selectedDepartamentoId, this.selectedCargoId);
+      this.cargarUsuarios(this.page, 10, this.selectedDepartamentoId, this.selectedCargoId);
     });
   }
 
@@ -95,7 +118,7 @@ export class UsersTableComponent implements OnInit {
     });
     dialogRefEdit.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.cargarUsuarios(1, 10, this.selectedDepartamentoId, this.selectedCargoId);
+      this.cargarUsuarios(this.page, 10, this.selectedDepartamentoId, this.selectedCargoId);
     });
   }
 
@@ -103,7 +126,7 @@ export class UsersTableComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.cargarUsuarios(1, 10, this.selectedDepartamentoId, this.selectedCargoId);
+      this.cargarUsuarios(this.page, 10, this.selectedDepartamentoId, this.selectedCargoId);
     });
   }
 
@@ -136,6 +159,12 @@ export class UsersTableComponent implements OnInit {
   cargarUsuarios(pageNumber: number = 1, pageSize: number = 10, departamentoId: number = 0, cargoId: number = 0): void {
     this.usuarioService.getUsersPaginate(pageNumber, pageSize, departamentoId, cargoId).subscribe(data => {
       this.numeroDeRegistros = data.items.length;
+      if (data.totalCount % data.pageSize === 0){
+        this.maxPage =  Math.floor(data.totalCount / data.pageSize);
+      } else {
+        this.maxPage =  Math.floor(data.totalCount / data.pageSize) + 1;
+      }
+      
       this.dataSource = data.items.map(x => ({
         id: x.id ? x.id : 0,
         usuario: x.usuario,
