@@ -1,6 +1,7 @@
 # UsuariosFront
 
 Este proyecto fue realizado con [Angular CLI](https://github.com/angular/angular-cli) version 17.1.2.
+Requisitos Node v20.11.0
 
 ## 1. Clonar el repositorio
 ```
