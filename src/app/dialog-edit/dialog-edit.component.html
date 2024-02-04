@@ -1,8 +1,10 @@
-<h2 mat-dialog-title>Editar usuario</h2>
+<div class="div-dialog">
+<h2 mat-dialog-title class="titulo-modal">Editar usuario</h2>
+<hr>
 <form [formGroup]="formularioUsuario" (ngSubmit)="editarUsuario()">
   <mat-dialog-content class="modal-dialog">
 
-    <mat-grid-list cols="2" rowHeight="7:1">
+    <mat-grid-list cols="2" rowHeight="50px">
       <mat-grid-tile>
         <p>Departamento:</p>
       </mat-grid-tile>
@@ -84,9 +86,11 @@
     </mat-grid-list>
 
   </mat-dialog-content>
+<hr>
   <mat-dialog-actions align="end">
     <button type="submit" mat-button mat-raised-button color="primary"
-      [disabled]="!formularioUsuario.valid">Actualizar</button>
+      [disabled]="!formularioUsuario.valid" class="btn-registrar">Actualizar</button>
     <button mat-button [mat-dialog-close]="" cdkFocusInitial>Cancelar</button>
   </mat-dialog-actions>
 </form>
+</div>

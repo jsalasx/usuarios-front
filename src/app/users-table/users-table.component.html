@@ -1,52 +1,56 @@
-<h4>Módulo de Adminsitración</h4>
-<h1>Administración de usuarios</h1>
-<div class="mat-elevation-z8 container-1">
-    <mat-grid-list cols="3" rowHeight="7:1">
+<div class="container-main">
+<p class="titulo-2">Módulo de Adminsitración</p>
+<h1 class="titulo-1"><b>Administración de usuarios</b></h1>
+
+    <mat-grid-list cols="3" rowHeight="75px">
         <mat-grid-tile>
-            <mat-form-field>
-                <mat-label>Seleccione un departamento</mat-label>
-                <mat-select [(value)]="selectedDepartamentoId" (selectionChange)="onDepartamentoChange($event)">
-                    <mat-option [value]="0"></mat-option>
-                    @for (dep of departamentos; track dep) {
-                    <mat-option [value]="dep.id">{{dep.nombre}}</mat-option>
-                    }
-                </mat-select>
-            </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Seleccione un departamento</mat-label>
+                    <mat-select [(value)]="selectedDepartamentoId" (selectionChange)="onDepartamentoChange($event)">
+                        <mat-option [value]="0"></mat-option>
+                        @for (dep of departamentos; track dep) {
+                        <mat-option [value]="dep.id">{{dep.nombre}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile>
-            <mat-form-field>
-                <mat-label>Seleccione un cargo</mat-label>
-                <mat-select [(value)]="selectedCargoId" (selectionChange)="onCargoChange($event)">
-                    <mat-option [value]="0"></mat-option>
-                    @for (cargo of cargos; track cargo) {
-                    <mat-option [value]="cargo.id">{{cargo.nombre}}</mat-option>
-                    }
-                </mat-select>
-            </mat-form-field>
+            <div class="align-start">
+                <mat-form-field>
+                    <mat-label>Seleccione un cargo</mat-label>
+                    <mat-select [(value)]="selectedCargoId" (selectionChange)="onCargoChange($event)">
+                        <mat-option [value]="0"></mat-option>
+                        @for (cargo of cargos; track cargo) {
+                        <mat-option [value]="cargo.id">{{cargo.nombre}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+            </div>
         </mat-grid-tile>
 
         <mat-grid-tile>
-            <button mat-button (click)="nuevo()">Crear nuevo usuario</button>
+            <button mat-button class="crear-nuevo-usuario" (click)="nuevo()">Crear nuevo usuario</button>
         </mat-grid-tile>
 
     </mat-grid-list>
 
+    <hr>
+    <br>    
 
-
-
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<div class="mat-elevation-z8 container-1">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z2">
 
         <!-- Columna Usuario -->
         <ng-container matColumnDef="usuario">
             <th mat-header-cell *matHeaderCellDef> Usuario </th>
             <td mat-cell *matCellDef="let element"> {{element.usuario}} </td>
-            <td mat-footer-cell *matFooterCellDef> <b>Total Registros:</b> </td>
+            <td mat-footer-cell *matFooterCellDef> <b>Total Registros:</b> {{ numeroDeRegistros }} </td>
         </ng-container>
 
         <ng-container matColumnDef="nombres">
             <th mat-header-cell *matHeaderCellDef> Nombres </th>
             <td mat-cell *matCellDef="let element"> {{element.nombres}} </td>
-            <td mat-footer-cell *matFooterCellDef> {{ numeroDeRegistros }} </td>
+            <td mat-footer-cell *matFooterCellDef>  </td>
         </ng-container>
 
         <ng-container matColumnDef="apellidos">
@@ -88,8 +92,9 @@
         <!-- Fila Definición -->
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        <tr mat-footer-row *matFooterRowDef="displayedColumns">
+        <tr class="user-tfoot" mat-footer-row *matFooterRowDef="displayedColumns">
         </tr>
     </table>
 
+</div>
 </div>

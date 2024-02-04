@@ -6,6 +6,11 @@ table {
 
 th.mat-header-cell, td.mat-cell {
   padding: 8px;
+  color: #586783;
+}
+
+td {
+color: #586783;
 }
 
 .mat-mdc-row:hover {
@@ -15,13 +20,55 @@ th.mat-header-cell, td.mat-cell {
 }
 
 .container-1 {
-  padding: 50px;
-  
+  padding: 20px;
+  background-color: white;
+}
+
+.container-main {
+  background-color: #f3f4f6;
+  padding-top: 12px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.titulo-2 {
+  font-size: 10px;
+  color: #586783;
+}
+
+.titulo-1 {
+  margin-top: -15px;
+  color: #586783;
+}
+
+.user-tfoot {
+background-color: #f8f9fa;
 }
 
 .btn-editar {
+  color: green !important;
+
+}
+.btn-editar:hover {
+  background-color: #c4f5d8 !important;
   color: green !important;
 }
 .icon-edit {
   border: 2px, solid, green;
 }
+
+.align-start {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinea los elementos hijos a la izquierda */
+}
+
+.mat-form-field {
+  width: 100%; /* Opcional: asegura que el campo de formulario ocupe todo el ancho disponible */
+}
+
+
+.crear-nuevo-usuario {
+  background-color: #e0e2e6;
+}
+

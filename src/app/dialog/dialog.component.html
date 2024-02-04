@@ -1,8 +1,9 @@
-<h2 mat-dialog-title>Registrar usuario</h2>
+<div class="div-dialog">
+<h2 mat-dialog-title class="titulo-modal">Registrar usuario</h2>
+<hr>
 <form [formGroup]="formularioUsuario" (ngSubmit)="registrarUsuario()">
   <mat-dialog-content class="modal-dialog">
-
-    <mat-grid-list cols="2" rowHeight="7:1">
+    <mat-grid-list cols="2" rowHeight="50px">
       <mat-grid-tile>
         <p>Departamento:</p>
       </mat-grid-tile>
@@ -84,9 +85,12 @@
     </mat-grid-list>
 
   </mat-dialog-content>
-  <mat-dialog-actions align="end">
-    <button type="submit" mat-button mat-raised-button color="primary"
-      [disabled]="!formularioUsuario.valid">Registrar</button>
+  <hr>
+  <mat-dialog-actions class="actions-dialog" align="end">
+    <button type="submit" mat-button mat-raised-button class="btn-registrar"
+     [disabled]="!formularioUsuario.valid"
+      >Registrar</button>
     <button mat-button [mat-dialog-close]="" cdkFocusInitial>Cancelar</button>
   </mat-dialog-actions>
 </form>
+</div>
